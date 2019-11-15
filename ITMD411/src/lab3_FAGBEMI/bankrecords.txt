@@ -1,0 +1,9 @@
+Data Analytics Result: 
+Avg inc. for Females: $28646.32
+Avg inc. for Males: $27225.83...
+Female count w. mort/savings accounts: 71
+Suburban male counts per loc. w. car & 1 child: 7
+Inner-City male counts per loc. w. car & 1 child: 0
+Rural male counts per loc. w. car & 1 child: 13
+Town male counts per loc. w. car & 1 child: 15
+Programmed by Idris Fagbemi  2019/10/29 16:03:15
