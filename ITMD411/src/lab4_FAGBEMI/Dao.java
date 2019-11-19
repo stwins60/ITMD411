@@ -1,8 +1,10 @@
-package lab4_FAGBEMI.libs;
+package lab4_FAGBEMI;
 
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
+import java.sql.PreparedStatement;
 
 //import com.mysql.jdbc.Statement;
 
@@ -43,38 +45,54 @@ public class Dao {
 			se.printStackTrace();
 		}
 	}
-	//INSERT INTO METHOD
+	// INSERT INTO METHOD
 	public void insertRecords(BankRecords[] robjs) {
+		PreparedStatement preparedStmt = null;// Prepared Statement object 
+		ResultSet rs = null;
 		try {
-			//Execute a query
-			System.out.println("Inserting records into the table..");
-			stmt = conn.connect().createStatement();
-			String sql = null;
+			
+			 String sql  ="INSERT INTO if_fagbemi_tab(id,income,pep)" + "VALUES (?, ?, ?)";
+			 preparedStmt = conn.connect().prepareStatement(sql);
+			System.out.println("Inserting records into the table...");
+			// Include all object data to the database table using prepared statement
+			for (int i = 0; i < robjs.length; ++i) {
+				
+				//preparedStmt.setInt(1, i);
+				preparedStmt.setString(1, robjs[i].getId());			//insert id
+				preparedStmt.setDouble(2, robjs[i].getIncome());		//insert income
+				preparedStmt.setString(3, robjs[i].getPep());			//insert pep
 
-			//include all object data to the database table
-			for(int i = 0; i < robjs.length; i++) {
+				preparedStmt.executeUpdate();							//execute prepared statement to insert data
 
-				//finish string assignment to insert all object data
-				//(id,income,pep) into the your database table
-
-				sql = "INSERT INTO if_fagbemi_tab(pid,income,pep)" + 
-						/*"VALUES(' "+value1+"', '"+value2+"', '"+value n+"')";*/
-						"VALUES(' "+robjs[i].getId()+"', '"+robjs[i].getIncome()+"', "
-								+ "'"+robjs[i].getPep()+"')";
-				stmt.executeUpdate(sql);
 			}
-			System.out.println("Records inserted into the table...");
-			conn.connect().close();
+			
+		System.out.println("Records inserted !");
+		conn.connect().close();
+		}catch (SQLException se) 
+		{ 
+			se.printStackTrace();  
 		}
-		catch(SQLException se){
-			se.printStackTrace();
-		}
-	}
+		  finally {
+				try {
+					
+					if(preparedStmt != null) 
+					{
+						preparedStmt.close();			//close PreparedStatement
+						preparedStmt = null;
+					}
+				if(conn!= null) {
+					conn.connect().close(); // close db connection
+				}
+				} catch (SQLException se) { // Handle errors for JDBC
+					se.printStackTrace();
+				}
+			}
+	 }
 	public ResultSet retrieveRecords() {
 		ResultSet rs = null;
-		
+
 		System.out.println("Connecting to a selected database for record retrievals...");
-		
+
 		try {
 			stmt = conn.connect().createStatement();
 			System.out.println("Connected to database sucessfully...");

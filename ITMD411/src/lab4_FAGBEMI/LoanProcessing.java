@@ -1,4 +1,4 @@
-package lab4_FAGBEMI.libs;
+package lab4_FAGBEMI;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ public class LoanProcessing extends BankRecords {
 		BankRecords br = new BankRecords();
 		br.readData();
 		Dao dao = new Dao();
-		dao.createTable();
+		//dao.createTable();
 		dao.insertRecords(robjs); // perform inserts
 		ResultSet rs = dao.retrieveRecords(); // fill result set object
 			

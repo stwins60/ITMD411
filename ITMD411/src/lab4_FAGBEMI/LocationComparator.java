@@ -1,7 +1,7 @@
 /**
  * 
  */
-package lab4_FAGBEMI.libs;
+package lab4_FAGBEMI;
 
 import java.util.Comparator;
 

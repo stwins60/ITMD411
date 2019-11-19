@@ -1,4 +1,4 @@
-package lab4_FAGBEMI.libs;
+package lab4_FAGBEMI;
 
 /**
  * @author idris Fagbemi

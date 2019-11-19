@@ -1,4 +1,4 @@
-package lab4_FAGBEMI.libs;
+package lab4_FAGBEMI;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
